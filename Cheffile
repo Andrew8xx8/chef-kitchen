@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'apt'
+cookbook 'postgresql'
+cookbook 'mysql'
+cookbook 'zsh'
+cookbook 'redisio'
+cookbook 'rabbitmq'
+
+cookbook 'zeromq-cookbook',
+  :git => 'https://github.com/pyronicide/zeromq-cookbook'
+
+cookbook 'rvm',
+  :git => 'https://github.com/fnichol/chef-rvm'

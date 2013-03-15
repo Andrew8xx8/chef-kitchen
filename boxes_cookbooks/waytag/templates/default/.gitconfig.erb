@@ -1,0 +1,41 @@
+[user]
+  name = <%= @user[:fullname] %>
+  email = <%= @user[:email] %>
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  up = pull --rebase
+  put = push origin HEAD
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  excludesfile = ~/.gitignore_global

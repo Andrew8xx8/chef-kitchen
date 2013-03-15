@@ -1,0 +1,50 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (1.9.0)
+    build-essential (1.3.4)
+    chef_gem (0.0.5)
+    erlang (1.2.0)
+      build-essential (>= 0.0.0)
+      yum (>= 0.5.0)
+    mysql (2.1.2)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
+    openssl (1.0.2)
+    postgresql (2.2.2)
+      openssl (>= 0.0.0)
+    rabbitmq (1.8.0)
+      apt (>= 1.4.4)
+      erlang (>= 0.9)
+      yum (>= 0.5.0)
+    redisio (1.4.1)
+      ulimit (>= 0.1.2)
+    ulimit (0.1.3)
+    yum (2.1.0)
+    zsh (1.0.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rvm
+  ref: master
+  sha: 37ae6f0d6540ebc95d22004d68dd45fe304d7255
+  specs:
+    rvm (0.9.1)
+      chef_gem (>= 0.0.0)
+
+GIT
+  remote: https://github.com/pyronicide/zeromq-cookbook
+  ref: master
+  sha: ddf4fe1dc74c6cc67a2488fb7c4c011dfb990c50
+  specs:
+    zeromq-cookbook (2.0.8)
+
+DEPENDENCIES
+  apt (>= 0)
+  mysql (>= 0)
+  postgresql (>= 0)
+  rabbitmq (>= 0)
+  redisio (>= 0)
+  rvm (>= 0)
+  zeromq-cookbook (>= 0)
+  zsh (>= 0)
+
