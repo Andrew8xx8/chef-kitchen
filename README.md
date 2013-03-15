@@ -1,4 +1,12 @@
-# Waytag vagrant boxe
+# Riby development box
+
+Includes:
+
+* vim (TODO: setup janus)
+* zsh + [oh-my-zsh](http://github.com/robbyrussell/oh-my-zsh)
+* curl
+* sphinxsearch
+* imagemagick
 
 ## Requirements
 
@@ -21,17 +29,26 @@ $ bundle install
 $ bundle exec librarian-chef install
 ```
 
-Choose the box and go to that directory:
-
 ```bash
-$ cd boxes/workvm
+$ vagrant up
 ```
 
-Finally, you should be able to use:
+First time it will be fail, we need to bootstrap chef:
+
+```bash
+$ bundle exec knife solo bootstrap vagrant@192.168.3.13 
+```
+
+Password: `vagrant`
+
+Reload vagrant:
 
 ```bash
 $ vagrant up
 ```
+
+
+
 
 ## Troubleshooting
 

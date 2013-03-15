@@ -15,3 +15,6 @@ cookbook 'zeromq-cookbook',
 
 cookbook 'rvm',
   :git => 'https://github.com/fnichol/chef-rvm'
+
+cookbook 'janus',
+  :git => 'https://github.com/pwelch/chef-janus.git'

@@ -32,6 +32,13 @@ GIT
       chef_gem (>= 0.0.0)
 
 GIT
+  remote: https://github.com/pwelch/chef-janus.git
+  ref: master
+  sha: e29c629e31257038d556f58f2cfeb3b9f255eb2e
+  specs:
+    janus (0.0.3)
+
+GIT
   remote: https://github.com/pyronicide/zeromq-cookbook
   ref: master
   sha: ddf4fe1dc74c6cc67a2488fb7c4c011dfb990c50
@@ -40,6 +47,7 @@ GIT
 
 DEPENDENCIES
   apt (>= 0)
+  janus (>= 0)
   mysql (>= 0)
   postgresql (>= 0)
   rabbitmq (>= 0)

@@ -20,6 +20,10 @@ GEM
     highline (1.6.15)
     ipaddress (0.8.0)
     json (1.7.7)
+    knife-solo (0.2.0)
+      chef (>= 10.12)
+      librarian (~> 0.0.20)
+      net-ssh (>= 2.2.2, < 3.0)
     librarian (0.0.26)
       archive-tar-minitar (>= 0.5.2)
       chef (>= 0.10)
@@ -56,4 +60,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  knife-solo
   librarian
