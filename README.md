@@ -2,7 +2,7 @@
 
 Includes:
 
-* vim (TODO: setup janus)
+* vim (janus)
 * zsh + [oh-my-zsh](http://github.com/robbyrussell/oh-my-zsh)
 * curl
 * sphinxsearch
@@ -22,12 +22,16 @@ $ git clone https://github.com/akalyaev/vagrant-boxes
 $ cd vagrant-boxes
 ```
 
+Edit `Vagrantfile` and setup shared folders, `USERNAME` and `EMAIL`
+
 And install gems and chef's necessary packages:
 
 ```bash
 $ bundle install
 $ bundle exec librarian-chef install
 ```
+
+Up the machine
 
 ```bash
 $ vagrant up
@@ -46,9 +50,6 @@ Reload vagrant:
 ```bash
 $ vagrant reload
 ```
-
-
-
 
 ## Troubleshooting
 
