@@ -44,7 +44,7 @@ Password: `vagrant`
 Reload vagrant:
 
 ```bash
-$ vagrant up
+$ vagrant reload
 ```
 
 

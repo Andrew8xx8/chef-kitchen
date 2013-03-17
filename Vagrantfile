@@ -45,7 +45,7 @@ Vagrant::Config.run do |config|
       :rvm => {
         :user_installs => [{
           :user => workvm[:user],
-          :default_ruby => '1.9.3-p27-railsexpress',
+          :default_ruby => '1.9.3-p327-railsexpress',
           :global_gems => [{ :name => 'bundler'}, { :name => 'rake' }],
           :gems => {
             '1.9.3-p327-railsexpress' => [
