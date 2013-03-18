@@ -7,6 +7,7 @@ Includes:
 * curl
 * sphinxsearch
 * imagemagick
+* rvm (ruby 1.9.3 railsexpress)
 
 ## Requirements
 
