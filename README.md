@@ -19,7 +19,7 @@ Includes:
 Clone the repository:
 
 ```bash
-$ git clone https://github.com/akalyaev/vagrant-boxes
+$ git clone git://github.com/Andrew8xx8/general-dev-box.git
 $ cd vagrant-boxes
 ```
 
