@@ -20,7 +20,7 @@ Clone the repository:
 
 ```bash
 $ git clone git://github.com/Andrew8xx8/general-dev-box.git
-$ cd vagrant-boxes
+$ cd general-dev-box
 ```
 
 Edit `Vagrantfile` and setup shared folders, `USERNAME` and `EMAIL`
