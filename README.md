@@ -1,72 +1,110 @@
 # Kitchen
 
-Includes:
+This is my solution to organize all my machines (local virtual machines,
+remote virtual machines and servers)
 
-* vim (janus)
-* zsh + [oh-my-zsh](http://github.com/robbyrussell/oh-my-zsh)
-* curl
-* sphinxsearch
-* imagemagick
-* rvm (ruby 1.9.3 railsexpress)
+* NO chef server required
+* All machines managed by same commands
 
-## Requirements
+## Tools
 
 * [VirtualBox](https://www.virtualbox.org)
 * [Vagrant](http://vagrantup.com)
+* [Chef (solo)](http://www.opscode.com/chef/) 
+* [knife-solo](https://github.com/matschaffer/knife-solo) 
 
-## Installation
+## Usage
 
-Clone the repository:
+### General
 
-```bash
-$ git clone git://github.com/Andrew8xx8/general-dev-box.git
-$ cd general-dev-box
+Install gems by:
+
+```shell
+bundle install
 ```
 
-Edit `Vagrantfile` and setup shared folders, `USERNAME` and `EMAIL`
+Install cookbooks from by berkschef:
 
-And install gems and chef's necessary packages:
-
-```bash
-$ bundle install
-$ berks install --path cookbooks
+```shell
+berks install --path cookbooks
 ```
 
-Up the machine
+### Local VM (with Virualbox + Vagrant)
 
-```bash
-$ vagrant up
+First install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+and [Vagranlt](http://downloads.vagrantup.com/) on your machine.
+
+So, go to the VM directory and start vagrant:
+
+```shell
+cd v/default_ruby
+vagrant up
 ```
 
-First time it will be fail, we need to bootstrap chef:
+Now Vm is runned. You can to stop it by `vagrant halt` command or
+suspend/resume by `vagrant suspend`/`vagrant resume`
 
-```bash
-$ bundle exec knife solo bootstrap vagrant@192.168.3.13 
+Copy your public key to VM (password is `vagrant`):
+
+```shell
+ssh-copy-id -i ~/.ssh/id_rsa.pub vagrant@192.168.3.11
 ```
 
-Password: `vagrant`
+To bootstrap chef-solo on VM run this command:
 
-Reload vagrant:
-
-```bash
-$ vagrant reload
+```shell
+cd ../../
+knife solo bootstrap vagrant@192.168.3.11 nodes/default_ruby_vagrant.json
 ```
 
-## Troubleshooting
+It's updates chef on VM6 uploads our kitchen and runs chef-solo.
 
-### OS
+In future you can run chef-solo by:
 
-* [VirtualBox vboxdrv problem on Ubuntu 12.10](http://nikunjlahoti.com/2012/11/09/virtualbox-on-ubuntu-12-10/)
-
-### Boxes
-
-If cases, where there are some recipes, which depends on a newer chef, run `gem install chef --no-ri --no-rdoc` (may require sudo) to update it.
-
-Example error:
-
-```bash
-[Fri, 11 Jan 2013 11:06:19 +0100] FATAL: Stacktrace dumped to /tmp/vagrant-chef-1/chef-stacktrace.out
-[Fri, 11 Jan 2013 11:06:19 +0100] FATAL: NoMethodError: undefined method `default_action' for #<Class:0x7f0c909547c0>
+```shell
+knife solo cook vagrant@192.168.3.11 nodes/default_ruby_vagrant.json
 ```
 
-If chef cannot find some package (e.g. `libssl-dev not found`), try to run `sudo apt-get update --fix-missing`
+#### Sync folders via NFS
+
+If you get error such like this when you trying to use NFS: 
+
+```
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mount -o vers=3 192.168.3.1:'~/projects'
+/home/vagrant/projects
+```
+
+May be you need to update your Virtualbox Guest Additions in 
+VM. You can install [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest). 
+This plugin updates Guest Additions automaticly. 
+
+If after updating Guest Additions you need to reload VM:
+
+```shell
+vagrant reload
+```
+
+### Remote machine
+
+Copy your public key to machine:
+
+```shell
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@YOUR_IP_ADRESS
+```
+
+Bootstrap chef-solo on VM from root of kitchen:
+
+```shell
+knife solo bootstrap root@YOUR_IP_ADRESS nodes/default_ruby.json
+```
+
+In future you can run chef-solo by:
+
+```shell
+knife solo cook root@YOUR_IP_ADRESS nodes/default_ruby.json
+```
+
+## Kitchen description

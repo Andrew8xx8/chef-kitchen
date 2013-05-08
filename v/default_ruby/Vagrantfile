@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.network :private_network, ip: "192.168.3.11"
+
+  config.vm.box = "debian-squeeze-64"
+  config.vm.box_url = "http://dl.dropbox.com/u/174733/debian-squeeze-64.box"
+
+  # Mount folder with NFS
+  #config.vm.synced_folder "~/projects", "/home/vagrant/projects", nfs: true
+
+  config.vm.provider :virtualbox do |vb|
+    # Don't boot with headless mode
+    # vb.gui = true
+
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+end

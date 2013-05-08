@@ -1,9 +1,9 @@
 #encoding: utf-8
 name "default_ruby_vagrant"
-description "Default ruby machine for server in clouds =)"
+description "Default ruby machine for vagrant"
 
 run_list [
-  "recipe[rvm::system]",
+  "recipe[rvm::user_install]",
   "recipe[locale]",
   "recipe[nginx]",
 
@@ -19,12 +19,22 @@ run_list [
 
 default_attributes(
   rvm: {
-     default_ruby: "1.9.3",
-     rubies: ["1.9.3"],
-     global_gems: [
-       { name: "chef" },
-       { name: "bundler" },
-     ]
+    user_installs: [{
+      default_attributes: '1.9.3-railsexpress',
+      user: "vagrant",
+      rubies: [
+        {
+          version: '1.9.3-railsexpress',
+          patch: 'railsexpress'
+        },
+      ],
+      global_gems: [
+        { name: 'bundler'}
+      ]
+    }],
+    global_gems: [
+      { name: "chef" }
+    ]
   },
   mysql: {
     server_root_password: "my_secure_password",
