@@ -4,12 +4,12 @@ This is my solution to organize all my machines (local virtual machines,
 remote virtual machines and servers)
 
 * NO chef server required
-* All machines managed by same commands
+* All machines managed by the same commands
 
 ## Tools
 
 * [VirtualBox](https://www.virtualbox.org)
-* [Vagrant](http://vagrantup.com)
+* [Vagrant (2.0)](http://vagrantup.com)
 * [Chef (solo)](http://www.opscode.com/chef/) 
 * [knife-solo](https://github.com/matschaffer/knife-solo) 
 
@@ -23,7 +23,7 @@ Install gems by:
 bundle install
 ```
 
-Install cookbooks from by berkschef:
+Install cookbooks by berkschef:
 
 ```shell
 berks install --path cookbooks
@@ -41,7 +41,7 @@ cd v/default_ruby
 vagrant up
 ```
 
-Now Vm is runned. You can to stop it by `vagrant halt` command or
+Now Vm is runned. You can stop it by `vagrant halt` command or
 suspend/resume by `vagrant suspend`/`vagrant resume`
 
 Copy your public key to VM (password is `vagrant`):
@@ -57,7 +57,7 @@ cd ../../
 knife solo bootstrap vagrant@192.168.3.11 nodes/default_ruby_vagrant.json
 ```
 
-It's updates chef on VM6 uploads our kitchen and runs chef-solo.
+It updates chef on VM, uploads our kitchen and runs chef-solo.
 
 In future you can run chef-solo by:
 
@@ -67,7 +67,7 @@ knife solo cook vagrant@192.168.3.11 nodes/default_ruby_vagrant.json
 
 #### Sync folders via NFS
 
-If you get error such like this when you trying to use NFS: 
+If you get error like this when you trying to use NFS: 
 
 ```
 The following SSH command responded with a non-zero exit status.
@@ -108,3 +108,11 @@ knife solo cook root@YOUR_IP_ADRESS nodes/default_ruby.json
 ```
 
 ## Kitchen description
+
+* `cookbooks/` - Folder for cookbooks downloaded by Berkschef
+* `nodes/` - Chef nodes contain only name of role that needed to be applayed to the machine.
+* `roles/` - All machines configuration
+* `site-cookbooks/` - Folder for custom cookbooks 
+* `v/` - Folder with VM's Vagrant files
+
+
